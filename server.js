@@ -1,8 +1,10 @@
 const express = require('express');
 require('dotenv').config();
+require('express-async-errors');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./DB/connect');
+const invoiceRouter = require('./Routers/invoiceRouter')
 
 const app = express();
 
@@ -16,8 +18,12 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(express.json());
 
 // routers
+app.use('/invoices', invoiceRouter);
 
 // routes
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  });
 
 // server start function
 const start = async() => {
