@@ -8,8 +8,7 @@ const invoiceRouter = require('./Routers/invoiceRouter')
 
 const app = express();
 
-// port variable
-const port = process.env.PORT || 5000;
+
 
 
 // middleware
@@ -24,6 +23,9 @@ app.use('/api/v1/invoices', invoiceRouter);
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
   });
+
+  // port variable
+const port = process.env.PORT || 5000;
 
 // server start function
 const start = async() => {
