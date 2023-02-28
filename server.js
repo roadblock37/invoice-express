@@ -13,7 +13,7 @@ const app = express();
 
 // middleware
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(express.json());
 
 // routers
@@ -21,7 +21,7 @@ app.use('/api/v1/invoices', invoiceRouter);
 
 // routes
 app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "./public", "index.html"));
   });
 
   // port variable
