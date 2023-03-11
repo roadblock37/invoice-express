@@ -9,11 +9,17 @@ const getAllInvoices = async (req, res) => {
     res.status(StatusCodes.OK).json({allInvoices, count: allInvoices.length});
 }
 const getSingleInvoice = async (req, res) => {
-    const {id: invoiceID} = req.params;
+    const {
+        params: {id: invoiceID},
+    } = req;
     // DB query to find invoice by id and update
     const invoice = await Invoice.findOne({_id: invoiceID});
+    if (!invoice) {
+        throw new alert(`No Invoice with id ${invoiceID}`);
+    }
     res.status(StatusCodes.OK).json({invoice});
 }
+
 const createInvoice = async (req, res) => {
     // DB query to create new Invoice
     const createInvoice = await Invoice.create(req.body);
