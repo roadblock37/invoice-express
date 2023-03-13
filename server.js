@@ -10,13 +10,13 @@ const app = express();
 
 // middleware
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(express.static(path.resolve(__dirname, "Invoice-Client/build")));
 app.use(express.json());
 
 // routes
 app.use("/api/v1/invoices", invoiceRouter);
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+  res.sendFile(path.resolve(__dirname, "Invoice-Client/build", "index.html"));
 });
 
 // port variable
