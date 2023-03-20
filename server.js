@@ -14,7 +14,7 @@ app.use(express.static(path.resolve(__dirname, "Invoice-Client/build")));
 app.use(express.json());
 
 // routes
-app.use("/api/v1", invoiceRouter);
+app.use("/api/v1/invoices", invoiceRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "Invoice-Client/build", "index.html"));
 });
